@@ -55,9 +55,9 @@ Una vez que los servicios se hayan iniciado correctamente, puedes acceder a ello
 
 ---
 
-### Despliegue en la Nube (AWS o GCP)
+### Despliegue en la Nube (AWS)
 
-Puedes desplegar esta aplicación en cualquier servicio de la nube que soporte contenedores Docker, como **AWS ECS**, **AWS Fargate**, o **Google Cloud Run**.
+Puedes desplegar esta aplicación en cualquier servicio de la nube que soporte contenedores Docker, como **AWS ECS** o **AWS Fargate**.
 
 #### Paso 1: Crear imágenes Docker
 
@@ -82,13 +82,9 @@ docker push <nombre_registro>/backend
 
 #### Paso 3: Configurar en la nube
 
-- **AWS ECS/Fargate:**
+  **AWS ECS/Fargate:**
   - Configura un cluster ECS con tareas para el frontend y backend.
   - Usa un Application Load Balancer (ALB) para distribuir el tráfico.
-
-- **Google Cloud Run:**
-  - Despliega cada servicio como un contenedor independiente.
-  - Configura rutas personalizadas para manejar el tráfico.
 
 ---
 
