@@ -1,15 +1,94 @@
-# Despliegue de Aplicación Django y React.js
+# Aplicación Fullstack: React y Django
 
-Este repositorio contiene el código para desplegar una aplicación Django (backend) y React.js (frontend) usando Docker Compose.
+Este repositorio contiene una aplicación fullstack que combina un backend en Django con un frontend en React. Ambos servicios están completamente dockerizados para facilitar el despliegue.
 
-## Requisitos
+---
 
-- Docker
-- Docker Compose
+## Requisitos, Despliegue Local y Despliegue en la Nube
 
-## Instrucciones de despliegue local
+### Requisitos
 
-1. Clona este repositorio:
-   ```bash
-   git clone <URL_DEL_REPOSITORIO>
-   cd <NOMBRE_DEL_REPOSITORIO>
+Antes de comenzar, asegúrate de tener instalados los siguientes programas:
+
+- **Docker** (versión 20.10 o superior)
+- **Docker Compose** (versión 1.29 o superior)
+- Opcional: **Git** para clonar el repositorio
+
+---
+
+### Despliegue Local
+
+#### Paso 1: Clonar el repositorio
+
+Clona el repositorio en tu máquina local:
+
+```bash
+git clone <URL_DEL_REPOSITORIO>
+cd <NOMBRE_DEL_REPOSITORIO>
+```
+
+#### Paso 2: Construir y levantar los servicios
+
+Construye y levanta los contenedores usando Docker Compose:
+
+```bash
+docker-compose up --build
+```
+
+#### Paso 3: Acceso a los servicios
+
+Una vez que los servicios se hayan iniciado correctamente, puedes acceder a ellos desde tu navegador:
+
+- **Frontend (React):** [http://localhost:3000](http://localhost:3000)
+- **Backend (Django):** [http://localhost:8000](http://localhost:8000)
+
+---
+
+### Despliegue en la Nube (AWS o GCP)
+
+Puedes desplegar esta aplicación en cualquier servicio de la nube que soporte contenedores Docker, como **AWS ECS**, **AWS Fargate**, o **Google Cloud Run**.
+
+#### Paso 1: Crear imágenes Docker
+
+Primero, genera las imágenes Docker para frontend y backend:
+
+```bash
+docker build -t <tu-usuario>/frontend ./frontend
+docker build -t <tu-usuario>/backend ./backend
+```
+
+#### Paso 2: Subir imágenes a un registro
+
+Sube las imágenes a un registro de contenedores (ejemplo con Docker Hub):
+
+```bash
+docker tag <tu-usuario>/frontend <nombre_registro>/frontend
+docker tag <tu-usuario>/backend <nombre_registro>/backend
+
+docker push <nombre_registro>/frontend
+docker push <nombre_registro>/backend
+```
+
+#### Paso 3: Configurar en la nube
+
+- **AWS ECS/Fargate:**
+  - Configura un cluster ECS con tareas para el frontend y backend.
+  - Usa un Application Load Balancer (ALB) para distribuir el tráfico.
+
+- **Google Cloud Run:**
+  - Despliega cada servicio como un contenedor independiente.
+  - Configura rutas personalizadas para manejar el tráfico.
+
+---
+
+
+#### Reconstruir y reiniciar servicios
+
+Para limpiar y reconstruir los contenedores, usa:
+
+```bash
+docker-compose down -v
+docker-compose up --build
+```
+
+---
