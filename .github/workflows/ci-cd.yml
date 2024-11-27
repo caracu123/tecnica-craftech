@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - Prueba\ 3/ci-cd-nginx/index.html  # Detectar cambios únicamente en este archivo
 
 jobs:
   build-and-push:

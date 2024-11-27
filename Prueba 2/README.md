@@ -35,6 +35,17 @@ Construye y levanta los contenedores usando Docker Compose:
 docker-compose up --build
 ```
 
+#### Configuración adicional para problemas de usuarios (opcional)
+
+Si experimentas problemas relacionados con permisos de usuarios al levantar el frontend, como errores en los archivos montados en los volúmenes o conflictos de acceso, puedes solucionarlo exportando las siguientes variables de tu entorno local:
+
+```bash
+export UID=$(id -u)
+export GID=$(id -g)
+```
+
+Esto asegura que el contenedor use el mismo usuario y grupo que tu sistema anfitrión (host).
+
 #### Paso 3: Acceso a los servicios
 
 Una vez que los servicios se hayan iniciado correctamente, puedes acceder a ellos desde tu navegador:

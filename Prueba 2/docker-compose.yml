@@ -21,10 +21,11 @@ services:
     container_name: react-frontend
     restart: always
     volumes:
-      - ./frontend:/app
+      - ./frontend:/app:delegated # Delegated: para optimizar el rendimiento. Esto le dice a Docker que los cambios en el volumen montado del host pueden no ser inmediatos, lo que reduce conflictos y problemas de sincronización.
       - /app/node_modules
     ports:
-      - "3000:3000"
+    - "3000:3000"
+    user: "${UID}:${GID}" # Esto asegura que el contenedor use el mismo usuario y grupo del host
 
   db:
     image: postgres:12.0-alpine
