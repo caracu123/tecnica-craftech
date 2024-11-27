@@ -48,6 +48,6 @@ jobs:
       - name: Pull and Deploy Docker Compose
         run: |
           cd ./Prueba\ 3/ci-cd-nginx
-          docker-compose down
+          docker compose down
           sed -i "s|image:.*|image: ${{ secrets.DOCKER_IMAGE }}:latest|g" docker-compose.yml
-          docker-compose up -d
+          docker compose up -d
