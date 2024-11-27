@@ -25,7 +25,7 @@ jobs:
       # Construir la imagen
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_IMAGE }}:latest .
+          docker build -t ${{ secrets.DOCKER_IMAGE }}:latest ./Prueba\ 3/ci-cd-nginx
 
       # Subir la imagen al registro de Docker
       - name: Push Docker image to Docker Hub
@@ -45,6 +45,7 @@ jobs:
       # Actualizar y desplegar usando docker-compose
       - name: Pull and Deploy Docker Compose
         run: |
+          cd ./Prueba\ 3/ci-cd-nginx
           docker-compose down
           sed -i "s|image:.*|image: ${{ secrets.DOCKER_IMAGE }}:latest|g" docker-compose.yml
           docker-compose up -d
