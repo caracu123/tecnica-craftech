@@ -35,3 +35,4 @@ Para que el pipeline funcione correctamente, es necesario configurar las siguien
 ### Activación del pipeline
 
 El pipeline se activa automáticamente cada vez que se realiza un **push** a la rama `main`. Si se realizan cambios en el archivo `index.html`, el pipeline reconstruirá la imagen y actualizará el despliegue.
+La imagen se publica en https://hub.docker.com/repository/docker/santiagofe/nginx-ci-cd/general
